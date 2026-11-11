@@ -1,0 +1,32 @@
+[
+  {
+    "username": "Zack",
+    "password": "creator",
+    "avatar": "assets/avatars/player1.png"
+  },
+  {
+    "username": "Maksim",
+    "password": "sexy",
+    "avatar": "assets/avatars/player2.png"
+  },
+  {
+    "username": "Peter",
+    "password": "corn",
+    "avatar": "assets/avatars/player3.png"
+  },
+  {
+    "username": "Axel",
+    "password": "drill",
+    "avatar": "assets/avatars/player4.png"
+  },
+  {
+    "username": "Edgar",
+    "password": "double",
+    "avatar": "assets/avatars/player5.png"
+  },
+  {
+    "username": "Elux",
+    "password": "hat",
+    "avatar": "assets/avatars/player6.png"
+  }
+]

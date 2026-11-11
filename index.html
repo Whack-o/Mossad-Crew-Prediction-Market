@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101318">
+  <title>Mossad Crew Prediction Market</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./config.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="The Exchange home">
+        <span class="brand-mark">E</span>
+        <span>Mossad Crew Prediction Market</span>
+      </a>
+      <div id="session-area" class="session-area" hidden>
+        <div id="current-user" class="current-user"></div>
+        <button id="logout-button" class="button button-quiet button-small" type="button">Log out</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="login-view" class="login-layout">
+        <div class="login-panel">
+          <div class="eyebrow">Mossad Crew</div>
+          <h1>Prediction Market</h1>
+          <p class="muted login-copy">Sign in with your first name and your group password.</p>
+          <form id="login-form" autocomplete="on">
+            <label for="username-input">Username</label>
+            <input id="username-input" name="username" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" required maxlength="24">
+            <label for="password-input">Password</label>
+            <input id="password-input" name="password" type="password" autocomplete="current-password" required>
+            <button id="login-button" class="button button-primary login-submit" type="submit">Log in</button>
+            <p id="login-message" class="form-message" role="alert"></p>
+          </form>
+        </div>
+        <p class="login-footnote">Made by Zachary Fernandez</p>
+      </section>
+
+      <section id="app-view" hidden>
+        <section class="leaderboard-section panel">
+          <div class="section-heading leaderboard-heading">
+            <div>
+              <div class="eyebrow">THE STANDINGS</div>
+              <h1>Leaderboard</h1>
+            </div>
+            <div class="leaderboard-meta">
+              <span id="player-count">0 players</span>
+              <span class="meta-dot">·</span>
+              <span id="resolved-count">0 resolved polls</span>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="leaderboard-table">
+              <thead>
+                <tr>
+                  <th class="rank-heading">#</th>
+                  <th>Player</th>
+                  <th class="numeric">Wins</th>
+                  <th class="numeric">Losses</th>
+                  <th class="numeric">Accuracy</th>
+                </tr>
+              </thead>
+              <tbody id="leaderboard-body">
+                <tr><td colspan="5" class="empty-cell">Loading leaderboard…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <details id="open-polls-section" class="poll-section" open>
+          <summary class="section-summary">
+            <span class="summary-title">Open Polls <span id="open-poll-count" class="count-pill">0</span></span>
+            <span class="summary-chevron" aria-hidden="true">⌄</span>
+          </summary>
+          <div id="open-polls" class="poll-grid"></div>
+        </details>
+
+        <details id="closed-polls-section" class="poll-section">
+          <summary class="section-summary">
+            <span class="summary-title">Closed Polls <span id="closed-poll-count" class="count-pill">0</span></span>
+            <span class="summary-chevron" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="closed-toolbar">
+            <label class="control-label" for="closed-filter">Show
+              <select id="closed-filter">
+                <option value="all">All</option>
+                <option value="unresolved">Unresolved</option>
+                <option value="resolved">Resolved</option>
+              </select>
+            </label>
+            <label class="control-label" for="closed-sort">Sort by
+              <select id="closed-sort">
+                <option value="closing-newest">Date closed (newest)</option>
+                <option value="closing-oldest">Date closed (oldest)</option>
+                <option value="resolved-newest">Date resolved (newest)</option>
+                <option value="resolved-oldest">Date resolved (oldest)</option>
+              </select>
+            </label>
+          </div>
+          <div id="closed-polls" class="poll-grid"></div>
+        </details>
+
+        <div class="page-footer">
+          <span>THE EXCHANGE</span>
+          <span id="last-updated">Updating…</span>
+          <button id="refresh-button" class="text-button" type="button">Refresh</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="spec-modal" class="modal-backdrop" hidden>
+    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-heading">
+        <h2 id="modal-title">Additional specifications</h2>
+        <button id="modal-close" class="icon-button" type="button" aria-label="Close specifications">×</button>
+      </div>
+      <div id="modal-content" class="modal-content"></div>
+    </section>
+  </div>
+
+  <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
