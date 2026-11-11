@@ -100,6 +100,24 @@
     });
   }
 
+  function excludedAvatarsMarkup(poll) {
+    const excludedNames = Array.isArray(poll.excluded) ? poll.excluded : [];
+    const excludedUsers = excludedNames
+      .map((username) => users.find((user) => normalizeUsername(user.username) === normalizeUsername(username)))
+      .filter(Boolean);
+
+    if (!excludedUsers.length) return "";
+
+    const avatars = excludedUsers
+      .map((user) => avatarMarkup(user, "excluded-avatar"))
+      .join("");
+
+    return `<div class="poll-excluded-players" aria-label="Excluded participants">
+      <span class="poll-excluded-label">EXCLUDED</span>
+      <span class="avatar-stack excluded-avatar-stack">${avatars}</span>
+    </div>`;
+  }
+
   function showLogin(message = "") {
     elements.loginView.hidden = false;
     elements.appView.hidden = true;
@@ -258,8 +276,11 @@
       ? `<div class="poll-spec-row"><button class="spec-button" type="button" data-spec-poll-id="${escapeHtml(poll.id)}">ⓘ Additional specifications</button></div>`
       : "";
 
+    const excludedAvatars = excludedAvatarsMarkup(poll);
+
     return `<article class="${cardClass}${excluded ? " excluded-card" : ""}">
       <div class="poll-topline">${status}<span class="poll-date">${escapeHtml(dateText)}</span></div>
+      ${excludedAvatars}
       <h2 class="poll-question">${escapeHtml(poll.question)}</h2>
       ${description}
       ${specifications}

@@ -95,6 +95,12 @@ h1, h2, p { margin-top: 0; }
 .market-status.closed { color: #a5aeb9; }
 .market-status.resolved { color: var(--green); }
 .poll-date { color: var(--muted); font-size: 10px; text-align: right; }
+.poll-excluded-players { display: flex; align-items: center; gap: 8px; margin: -1px 0 11px; min-height: 22px; }
+.poll-excluded-label { color: var(--muted); font-size: 9px; font-weight: 750; letter-spacing: .09em; }
+.excluded-avatar-stack { display: inline-flex; align-items: center; padding-left: 2px; }
+.excluded-avatar-stack .avatar { width: 22px; height: 22px; flex-basis: 22px; margin-left: -5px; border: 2px solid var(--panel); font-size: 8px; }
+.closed-card .excluded-avatar-stack .avatar { border-color: #171c23; }
+.resolved-card .excluded-avatar-stack .avatar { border-color: #1a2b22; }
 .poll-question { margin: 0 0 8px; font-size: 16px; font-weight: 730; line-height: 1.35; letter-spacing: -.025em; }
 .poll-description { margin: 0 0 12px; color: #aeb8c4; font-size: 12px; line-height: 1.5; }
 .poll-spec-row { margin: 0 0 12px; }
