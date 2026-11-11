@@ -4,7 +4,7 @@
   or secret key in this file.
 */
 window.PREDICTION_CONFIG = {
-  supabaseUrl: "https://ctxpsjcpzbquaiyxcysu.supabase.co/rest/v1/",
+  supabaseUrl: "https://ctxpsjcpzbquaiyxcysu.supabase.co",
   supabaseKey: "sb_publishable_igMcnn1npN0Ca9o_Yr5eFg_tkVUOvpr",
   siteName: "THE EXCHANGE",
   refreshIntervalMs: 15000
