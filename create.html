@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101318">
+  <title>Create a Poll · The Exchange</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./config.js"></script>
+  <script defer src="./create-poll.js"></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="The Exchange home">
+        <span class="brand-mark">E</span>
+        <span>THE EXCHANGE</span>
+      </a>
+      <div class="create-header-right">
+        <div id="create-current-user" class="current-user"></div>
+        <a class="button button-quiet button-small" href="./index.html">← Back to polls</a>
+      </div>
+    </header>
+
+    <main class="create-layout">
+      <div class="create-page-heading">
+        <div class="eyebrow">OPEN THE FLOOR</div>
+        <h1>Create a poll</h1>
+        <p class="muted">Write a question, set the deadline, and give everyone their options.</p>
+      </div>
+
+      <section class="panel create-panel">
+        <form id="create-poll-form" class="create-form">
+          <div class="form-field">
+            <label for="poll-question">Question <span class="required-mark">*</span></label>
+            <input id="poll-question" name="question" type="text" maxlength="180" placeholder="e.g. Peter gets drunk this Saturday" required>
+            <span class="field-hint">The question shown on the poll tile.</span>
+          </div>
+
+          <div class="form-field">
+            <label for="poll-closing-date">Voting closes <span class="required-mark">*</span></label>
+            <input id="poll-closing-date" name="closingDate" type="datetime-local" required>
+            <span class="field-hint">Uses your device's local time zone.</span>
+          </div>
+
+          <div class="form-field">
+            <label for="poll-description">Description <span class="optional-mark">OPTIONAL</span></label>
+            <textarea id="poll-description" name="description" rows="2" maxlength="500" placeholder="Add a little context for the question..."></textarea>
+          </div>
+
+          <div class="form-field">
+            <label for="poll-specifications">Additional specifications <span class="optional-mark">OPTIONAL</span></label>
+            <textarea id="poll-specifications" name="specifications" rows="3" maxlength="2000" placeholder="Clarify exactly what counts as each outcome..."></textarea>
+            <span class="field-hint">Displayed behind an Additional specifications button on the poll.</span>
+          </div>
+
+          <fieldset class="form-field form-fieldset">
+            <div class="fieldset-heading">
+              <legend>Options <span class="required-mark">*</span></legend>
+              <span class="field-hint">At least 2; up to 12.</span>
+            </div>
+            <div id="poll-options-list" class="poll-options-editor">
+              <div class="poll-option-row">
+                <span class="option-index">01</span>
+                <input class="poll-option-input" type="text" maxlength="100" placeholder="First option" aria-label="Option 1" required>
+                <button class="remove-option-button" type="button" aria-label="Remove option" disabled>×</button>
+              </div>
+              <div class="poll-option-row">
+                <span class="option-index">02</span>
+                <input class="poll-option-input" type="text" maxlength="100" placeholder="Second option" aria-label="Option 2" required>
+                <button class="remove-option-button" type="button" aria-label="Remove option" disabled>×</button>
+              </div>
+            </div>
+            <button id="add-option-button" class="add-option-button" type="button">+ Add another option</button>
+          </fieldset>
+
+          <fieldset class="form-field form-fieldset">
+            <div class="fieldset-heading">
+              <legend>Excluded participants</legend>
+              <span class="field-hint">They cannot vote and are not scored.</span>
+            </div>
+            <div id="excluded-users-list" class="excluded-users-list">
+              <span class="field-hint">Loading players…</span>
+            </div>
+          </fieldset>
+
+          <div class="create-form-bottom">
+            <p class="field-hint"><span class="required-mark">*</span> Required fields. Polls cannot be edited after creation from this page.</p>
+            <button id="create-poll-submit" class="button button-primary create-submit" type="submit">Create poll</button>
+          </div>
+          <p id="create-poll-message" class="create-message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <div class="create-footer">
+        <a class="text-button" href="./index.html">← Back to all polls</a>
+        <span>THE EXCHANGE</span>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

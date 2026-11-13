@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101318">
-  <title>Mossad Crew Prediction Market</title>
+  <title>The Exchange</title>
   <link rel="stylesheet" href="./styles.css">
   <script src="./config.js"></script>
   <script defer src="./app.js"></script>
@@ -12,12 +12,13 @@
 <body>
   <div class="page-shell">
     <header class="site-header">
-      <a class="brand" href="#" aria-label="The Exchange home">
-        <span class="brand-mark">🥴</span>
-        <span>Mossad Crew Prediction Market</span>
+      <a class="brand" href="./" aria-label="The Exchange home">
+        <span class="brand-mark">E</span>
+        <span>THE EXCHANGE</span>
       </a>
       <div id="session-area" class="session-area" hidden>
         <div id="current-user" class="current-user"></div>
+        <a class="button button-primary button-small create-poll-link" href="./create.html">Create poll</a>
         <button id="logout-button" class="button button-quiet button-small" type="button">Log out</button>
       </div>
     </header>
@@ -25,8 +26,8 @@
     <main>
       <section id="login-view" class="login-layout">
         <div class="login-panel">
-          <div class="eyebrow">Mossad Crew</div>
-          <h1>Prediction Market</h1>
+          <div class="eyebrow">PRIVATE PREDICTION LEAGUE</div>
+          <h1>Make your call.</h1>
           <p class="muted login-copy">Sign in with your first name and your group password.</p>
           <form id="login-form" autocomplete="on">
             <label for="username-input">Username</label>
@@ -37,7 +38,7 @@
             <p id="login-message" class="form-message" role="alert"></p>
           </form>
         </div>
-        <p class="login-footnote">Made by Zachary Fernandez</p>
+        <p class="login-footnote">A private game for a very small group.</p>
       </section>
 
       <section id="app-view" hidden>
