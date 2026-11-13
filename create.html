@@ -9,56 +9,85 @@
   <script src="./config.js"></script>
   <script defer src="./create-poll.js"></script>
 </head>
-<body>
+<body class="create-page">
   <div class="page-shell">
-    <header class="site-header">
+    <header class="site-header create-site-header">
       <a class="brand" href="./index.html" aria-label="The Exchange home">
         <span class="brand-mark">E</span>
         <span>THE EXCHANGE</span>
       </a>
       <div class="create-header-right">
         <div id="create-current-user" class="current-user"></div>
-        <a class="button button-quiet button-small" href="./index.html">← Back to polls</a>
+        <a class="button button-quiet button-small back-link" href="./index.html"><span aria-hidden="true">←</span><span>Back to polls</span></a>
       </div>
     </header>
 
     <main class="create-layout">
       <div class="create-page-heading">
-        <div class="eyebrow">OPEN THE FLOOR</div>
-        <h1>Create a poll</h1>
-        <p class="muted">Write a question, set the deadline, and give everyone their options.</p>
+        <div class="create-heading-copy">
+          <div class="eyebrow">OPEN THE FLOOR</div>
+          <h1>Create a poll</h1>
+          <p class="muted">Set the question, choose the outcomes, and decide when voting closes.</p>
+        </div>
+        <div class="create-heading-mark" aria-hidden="true"><span>＋</span></div>
       </div>
 
-      <section class="panel create-panel">
-        <form id="create-poll-form" class="create-form">
-          <div class="form-field">
-            <label for="poll-question">Question <span class="required-mark">*</span></label>
-            <input id="poll-question" name="question" type="text" maxlength="180" placeholder="e.g. Peter gets drunk this Saturday" required>
-            <span class="field-hint">The question shown on the poll tile.</span>
+      <form id="create-poll-form" class="create-form">
+        <section class="panel create-form-section question-section" aria-labelledby="question-section-title">
+          <div class="form-section-heading">
+            <span class="form-section-number">01</span>
+            <div>
+              <h2 id="question-section-title">The question</h2>
+              <p>What are you asking the group to predict?</p>
+            </div>
           </div>
+          <div class="form-field">
+            <label for="poll-question">Poll question <span class="required-mark">*</span></label>
+            <input id="poll-question" name="question" type="text" maxlength="180" placeholder="e.g. Peter gets drunk this Saturday" required>
+            <span class="field-hint">Keep it specific enough that the result is unambiguous.</span>
+          </div>
+        </section>
 
+        <section class="panel create-form-section" aria-labelledby="timing-section-title">
+          <div class="form-section-heading">
+            <span class="form-section-number">02</span>
+            <div>
+              <h2 id="timing-section-title">Timing & context</h2>
+              <p>Set the voting deadline and add any useful context.</p>
+            </div>
+          </div>
           <div class="form-field">
             <label for="poll-closing-date">Voting closes <span class="required-mark">*</span></label>
             <input id="poll-closing-date" name="closingDate" type="datetime-local" required>
             <span class="field-hint">Uses your device's local time zone.</span>
           </div>
-
-          <div class="form-field">
-            <label for="poll-description">Description <span class="optional-mark">OPTIONAL</span></label>
-            <textarea id="poll-description" name="description" rows="2" maxlength="500" placeholder="Add a little context for the question..."></textarea>
-          </div>
-
-          <div class="form-field">
-            <label for="poll-specifications">Additional specifications <span class="optional-mark">OPTIONAL</span></label>
-            <textarea id="poll-specifications" name="specifications" rows="3" maxlength="2000" placeholder="Clarify exactly what counts as each outcome..."></textarea>
-            <span class="field-hint">Displayed behind an Additional specifications button on the poll.</span>
-          </div>
-
-          <fieldset class="form-field form-fieldset">
-            <div class="fieldset-heading">
-              <legend>Options <span class="required-mark">*</span></legend>
-              <span class="field-hint">At least 2; up to 12.</span>
+          <div class="form-grid-two">
+            <div class="form-field">
+              <label for="poll-description">Description <span class="optional-mark">OPTIONAL</span></label>
+              <textarea id="poll-description" name="description" rows="3" maxlength="500" placeholder="Add context for the group..."></textarea>
+              <span class="field-hint">A short explanation shown on the poll tile.</span>
             </div>
+            <div class="form-field">
+              <label for="poll-specifications">Additional specifications <span class="optional-mark">OPTIONAL</span></label>
+              <textarea id="poll-specifications" name="specifications" rows="3" maxlength="2000" placeholder="Clarify exactly what counts..."></textarea>
+              <span class="field-hint">Shown behind a separate button on the poll.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel create-form-section" aria-labelledby="options-section-title">
+          <div class="form-section-heading form-section-heading-spread">
+            <div class="form-section-title-group">
+              <span class="form-section-number">03</span>
+              <div>
+                <h2 id="options-section-title">Answer options <span class="required-mark">*</span></h2>
+                <p>Add every possible outcome for this poll.</p>
+              </div>
+            </div>
+            <span class="section-limit">2–12 options</span>
+          </div>
+          <fieldset class="form-field form-fieldset">
+            <legend class="visually-hidden">Answer options</legend>
             <div id="poll-options-list" class="poll-options-editor">
               <div class="poll-option-row">
                 <span class="option-index">01</span>
@@ -71,26 +100,39 @@
                 <button class="remove-option-button" type="button" aria-label="Remove option" disabled>×</button>
               </div>
             </div>
-            <button id="add-option-button" class="add-option-button" type="button">+ Add another option</button>
+            <button id="add-option-button" class="add-option-button" type="button"><span aria-hidden="true">＋</span> Add another option</button>
           </fieldset>
+        </section>
 
-          <fieldset class="form-field form-fieldset">
-            <div class="fieldset-heading">
-              <legend>Excluded participants</legend>
-              <span class="field-hint">They cannot vote and are not scored.</span>
+        <section class="panel create-form-section" aria-labelledby="excluded-section-title">
+          <div class="form-section-heading form-section-heading-spread">
+            <div class="form-section-title-group">
+              <span class="form-section-number">04</span>
+              <div>
+                <h2 id="excluded-section-title">Excluded participants</h2>
+                <p>Excluded players cannot vote and aren't included in scoring.</p>
+              </div>
             </div>
+            <span class="section-limit">Optional</span>
+          </div>
+          <fieldset class="form-field form-fieldset">
+            <legend class="visually-hidden">Choose excluded participants</legend>
             <div id="excluded-users-list" class="excluded-users-list">
               <span class="field-hint">Loading players…</span>
             </div>
           </fieldset>
+        </section>
 
-          <div class="create-form-bottom">
-            <p class="field-hint"><span class="required-mark">*</span> Required fields. Polls cannot be edited after creation from this page.</p>
-            <button id="create-poll-submit" class="button button-primary create-submit" type="submit">Create poll</button>
-          </div>
+        <div class="create-submit-area">
+          <p class="field-hint"><span class="required-mark">*</span> Required fields. Polls cannot be edited after creation from this page.</p>
+          <button id="create-poll-submit" class="button button-primary create-submit" type="submit">
+            <span class="submit-button-icon" aria-hidden="true">＋</span>
+            <span>Create poll</span>
+            <span class="submit-button-arrow" aria-hidden="true">→</span>
+          </button>
           <p id="create-poll-message" class="create-message" role="status" aria-live="polite"></p>
-        </form>
-      </section>
+        </div>
+      </form>
 
       <div class="create-footer">
         <a class="text-button" href="./index.html">← Back to all polls</a>
